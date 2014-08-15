@@ -83,9 +83,7 @@
  ;; If there is more than one, they won't work right.
  '(apropos-match-face (quote secondary-selection))
  '(blink-cursor-mode nil)
- '(custom-safe-themes
-   (quote
-    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "290987f8b1cbe93977fc21403c1e9bdc95013cb0cf29d0f6120768463ee61442" default)))
+ '(custom-safe-themes (quote ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "290987f8b1cbe93977fc21403c1e9bdc95013cb0cf29d0f6120768463ee61442" default)))
  '(fringe-mode 6 nil (fringe))
  '(linum-format " %5d")
  '(list-matching-lines-buffer-name-face (quote bold))
@@ -97,12 +95,10 @@
  '(powerline-color2 "#111111")
  '(scroll-bar-mode nil)
  '(session-use-package t nil (session))
- '(site-autoshells
-   (quote
-    (("localhost" "" "~/"
-      ("*shell_l1*" "*shell_l2*" "*shell_t_cr*" "*shell_b_cr*")))))
+ '(site-autoshells (quote (("localhost" "" "~/" ("*shell_l1*" "*shell_l2*" "*shell_t_cr*" "*shell_b_cr*")))))
  '(site-vendor-load-hook nil)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(windmove-wrap-around nil))
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -128,11 +124,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(linum ((t (:background "#2a2a2a" :foreground "white smoke" :slant normal))) t))
+ '(linum ((t (:background "#2a2a2a" :foreground "white smoke" :slant normal))))
+ '(mode-line ((t (:background "dark slate gray" :box (:line-width 1 :color "#eaeaea") :weight normal))))
+ '(mode-line-buffer-id ((t (:foreground "snow2" :weight bold))))
+ '(mode-line-highlight ((t (:foreground "snow1" :box nil :weight bold))))
+ '(mode-line-inactive ((t (:inherit mode-line :background "#2a2a2a" :foreground "#969896" :weight normal))))
+ '(wg-divider-face ((t (:foreground "gainsboro"))))
+ '(wg-mode-line-face ((t (:foreground "gainsboro")))))
 
 (set-background-color "grey14")
-(require 'god-mode)
-(global-set-key (kbd "<escape>") 'god-mode-all)
+
 (defun my-update-cursor ()
   (setq cursor-type (if (or god-local-mode buffer-read-only)
                         'box
@@ -153,7 +154,6 @@
   scroll-conservatively 10000
   scroll-preserve-screen-position 1)
 
-(require 'google-weather)
 (require 'google-translate)
 
 (column-number-mode 1)
@@ -252,25 +252,5 @@
 (require 'ido)
 (ido-mode t)
 
-; python-mode
-(require 'python-mode)
 
-
-; use IPython
-(setq-default py-shell-name "ipython")
-(setq-default py-which-bufname "IPython")
-; use the wx backend, for both mayavi and matplotlib
-(setq py-python-command-args
-  '("--gui=wx" "--pylab=wx" "-colors" "Linux"))
-(setq py-force-py-shell-name-p t)
-
-; switch to the interpreter after executing code
-(setq py-shell-switch-buffers-on-execute-p t)
-(setq py-switch-buffers-on-execute-p t)
-; don't split windows
-(setq py-split-windows-on-execute-p nil)
-; try to automagically figure out indentation
-(setq py-smart-indentation t)
-
-
-(require 'ipython)
+(require 'ein)
